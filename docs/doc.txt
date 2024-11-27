@@ -1,0 +1,16 @@
+Recreate the provided UI design (attached as an image).
+Technology Stack: React (preferred), React Redux for state management.
+Features:
+Pagination for "Order History" and "Notifications".
+Interactivity: Charts (Pie, Bar), dynamic tables, navigation bar, and progress bars.
+Light & Dark themes (toggle using Redux).
+Data: Use hardcoded JSON files for populating the UI.
+Deployment: Deploy on Vercel or Netlify or any other free platform and share the live link.
+Important Notes
+
+The icons, graphs, or other elements in the provided image can be replaced with alternatives of your choice as the exact assets won’t be available.
+Please attempt to replicate the layout and interactivity as closely as possible, using any components or libraries you prefer.
+Deliverables
+
+GitHub repository with the project and a README.md (instructions to run locally + live demo link).
+Deployed link of the website.
