@@ -34,8 +34,8 @@ const Pagination = ({
   return (
     <div className="flex justify-between items-center mt-4">
       {/* Items per page selector */}
-      <div className="flex items-center">
-        <span className="text-gray-700 mr-2">Items per page:</span>
+      <div className="flex items-center text-blue-600">
+        <span>Showing:</span>
         <select
           value={itemsPerPage}
           onChange={(e) => onItemsPerPageChange(Number(e.target.value))}
@@ -55,13 +55,22 @@ const Pagination = ({
         <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className={`px-3 py-1 rounded-md ${
-            currentPage === 1
-              ? "text-gray-400 cursor-not-allowed"
-              : "text-blue-500 hover:bg-blue-100"
+          className={`px-3 py-1 ${
+            currentPage === 1 ? "text-blue-500" : "text-gray-700"
           }`}
         >
-          &larr;
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              fillRule="evenodd"
+              d="M19 12a1 1 0 0 1-1 1H7.414l4.293 4.293a1 1 0 0 1-1.414 1.414l-6-6a1 1 0 0 1 0-1.414l6-6a1 1 0 0 1 1.414 1.414L7.414 11H18a1 1 0 0 1 1 1z"
+              clipRule="evenodd"
+            />
+          </svg>
         </button>
 
         {/* Page Numbers */}
@@ -69,10 +78,8 @@ const Pagination = ({
           <button
             key={page}
             onClick={() => onPageChange(page)}
-            className={`px-3 py-1 rounded-md ${
-              page === currentPage
-                ? "bg-blue-500 text-white"
-                : "text-gray-700 hover:bg-gray-200"
+            className={`px-3 py-1 ${
+              page === currentPage ? "text-blue-500" : "text-gray-700"
             }`}
           >
             {page}
@@ -83,13 +90,22 @@ const Pagination = ({
         <button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className={`px-3 py-1 rounded-md ${
-            currentPage === totalPages
-              ? "text-gray-400 cursor-not-allowed"
-              : "text-blue-500 hover:bg-blue-100"
+          className={`px-3 py-1 ${
+            currentPage === totalPages ? "text-blue-500" : "text-gray-700"
           }`}
         >
-          &rarr;
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              fillRule="evenodd"
+              d="M5 12a1 1 0 0 1 1-1h10.586l-4.293-4.293a1 1 0 0 1 1.414-1.414l6 6a1 1 0 0 1 0 1.414l-6 6a1 1 0 0 1-1.414-1.414L16.586 13H6a1 1 0 0 1-1-1z"
+              clipRule="evenodd"
+            />
+          </svg>
         </button>
       </div>
     </div>

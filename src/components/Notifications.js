@@ -4,8 +4,6 @@ import Pagination from "./Pagination";
 import FilterDropdown from "./FilterDropdown";
 
 import { notificationsData } from "../data/notificationsData";
-
-// Utility function to format time as 'X days ago'
 const getRelativeTime = (date) => {
   const now = new Date();
   const past = new Date(date);
@@ -48,7 +46,6 @@ const Notifications = () => {
         <FilterDropdown filter={filter} setFilter={setFilter} />
       </div>
 
-      {/* Scrollable Table Container */}
       <div className="overflow-y-auto max-h-40">
         <table className="w-full text-sm text-left text-gray-500 table-fixed">
           <thead className="text-gray-700 uppercase bg-gray-50">
@@ -70,7 +67,6 @@ const Notifications = () => {
         </table>
       </div>
 
-      {/* Pagination Component */}
       <Pagination
         totalItems={filteredData.length}
         itemsPerPage={itemsPerPage}
