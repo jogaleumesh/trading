@@ -4,41 +4,27 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const SemiDoughnutChart = () => {
-  const data = {
-    labels: ["Blue", "Orange", "Light Blue"], // Optional labels
-    datasets: [
-      {
-        data: [50, 30, 20], // Adjust values according to your chart
-        backgroundColor: ["#3B82F6", "#F97316", "#60A5FA"], // Blue, Orange, Light Blue
-        borderWidth: 0, // Removes border between segments
-        circumference: 180, // Half-circle
-        rotation: 270, // Starts from the bottom
-        cutout: "70%", // Adjust the thickness
-      },
-    ],
-  };
-
+const SemiDoughnutChart = ({ data, total }) => {
   const options = {
     responsive: true,
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
-        display: false, // Hide legend
+        display: false,
       },
       tooltip: {
-        enabled: false, // Hide tooltips
+        enabled: false,
       },
     },
   };
 
   return (
-    <div className="relative flex items-center justify-center">
+    <div className="relative h-20">
       <Doughnut data={data} options={options} />
 
-      <div className="absolute text-center">
-        <p className="text-blue-600 text-lg">Total</p>
-        <p className="text-black text-xl">16</p>
+      <div className="absolute inset-0  top-12 flex flex-col items-center justify-center">
+        <span className="text-lg font-semibold text-gray-700">Total</span>
+        <span className="text-xl font-bold text-blue-600">{total}</span>
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ const Header = () => {
   const theme = useSelector((state) => state.theme.theme);
 
   return (
-    <div className="sticky top-0 bg-white dark:bg-gray-800 shadow p-4 flex justify-between items-center">
+    <div className="sticky top-0 bg-white dark:bg-gray-800 shadow p-4 flex justify-between items-center z-10">
       <h2 className="text-lg font-bold dark:text-white">Welcome back, Umesh</h2>
       <div className="flex space-x-2">
         <button className="bg-blue-600 text-white px-4 py-2 rounded flex items-center space-x-2">

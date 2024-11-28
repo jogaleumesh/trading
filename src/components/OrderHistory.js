@@ -22,7 +22,7 @@ const OrderHistory = () => {
   );
 
   return (
-    <div className="bg-white m-6 p-6 rounded-lg shadow">
+    <div className="bg-white p-6 rounded-lg shadow">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center">
           <img src="assets/dollar.png" alt="payout" className="h-6 mr-2" />
@@ -32,7 +32,7 @@ const OrderHistory = () => {
         <FilterDropdown filter={filter} setFilter={setFilter} />
       </div>
 
-      <div className="overflow-y-auto max-h-60">
+      <div className="overflow-y-auto max-h-100">
         <table className="min-w-full text-sm text-gray-700">
           <thead className="bg-gray-50">
             <tr>

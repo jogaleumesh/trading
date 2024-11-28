@@ -19,3 +19,29 @@ export const chartData = {
     },
   ],
 };
+
+export const mostTraded = {
+  trades: [
+    { name: "NZDUSD", color: "bg-blue-500" },
+    { name: "GBPUSD", color: "bg-red-400" },
+    { name: "AUDCHF", color: "bg-blue-300" },
+    { name: "USDCHF", color: "bg-purple-300" },
+    { name: "XAUUSD", color: "bg-orange-200" },
+    { name: "AUDNZD", color: "bg-teal-300" },
+  ],
+  total: 16,
+};
+
+export const doughnutChartData = {
+  labels: ["NZDUSD", "GBPUSD", "AUDCHF"],
+  datasets: [
+    {
+      data: [50, 30, 20],
+      backgroundColor: ["#2f62d5", "#ff774e", "#13c0f9"],
+      borderWidth: 0,
+      circumference: 180,
+      rotation: 270,
+      cutout: "75%",
+    },
+  ],
+};

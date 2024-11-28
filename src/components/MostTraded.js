@@ -1,5 +1,7 @@
 import SemiDoughnutChart from "./SemiDoughnutChart";
 
+import { doughnutChartData, mostTraded } from "../data/chartData";
+
 const MostTraded = ({ trades, total }) => {
   return (
     <div className="bg-white shadow-md rounded-lg p-6">
@@ -20,8 +22,9 @@ const MostTraded = ({ trades, total }) => {
       </div>
 
       <div className="grid grid-cols-3 gap-4">
+        {/* First Column */}
         <div className="space-y-2">
-          {trades.left.map((item, index) => (
+          {mostTraded.trades.slice(0, 3).map((item, index) => (
             <div key={index} className="flex items-center space-x-2">
               <span className={`w-2 h-2 rounded-full ${item.color}`}></span>
               <span className="text-gray-600">{item.name}</span>
@@ -29,8 +32,9 @@ const MostTraded = ({ trades, total }) => {
           ))}
         </div>
 
+        {/* Second Column */}
         <div className="space-y-2">
-          {trades.right.map((item, index) => (
+          {mostTraded.trades.slice(3, 6).map((item, index) => (
             <div key={index} className="flex items-center space-x-2">
               <span className={`w-2 h-2 rounded-full ${item.color}`}></span>
               <span className="text-gray-600">{item.name}</span>
@@ -38,7 +42,7 @@ const MostTraded = ({ trades, total }) => {
           ))}
         </div>
 
-        <SemiDoughnutChart />
+        <SemiDoughnutChart total={mostTraded.total} data={doughnutChartData} />
       </div>
     </div>
   );

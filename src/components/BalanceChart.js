@@ -11,7 +11,6 @@ import {
 
 import { chartData } from "../data/chartData";
 
-// Register Chart.js components
 ChartJS.register(
   LineElement,
   PointElement,
@@ -30,8 +29,8 @@ const BalanceChart = () => {
         grid: { display: true },
         ticks: {
           font: {
-            family: "Roboto", // Apply Roboto font to X-axis labels
-            size: 14, // Adjust font size if needed
+            family: "Roboto",
+            size: 14,
           },
         },
       },
@@ -41,12 +40,12 @@ const BalanceChart = () => {
         grid: { display: true },
         ticks: {
           font: {
-            family: "Roboto", // Apply Roboto font to Y-axis labels
+            family: "Roboto",
             size: 14,
           },
           callback: (value) => {
             if (value >= 1000) {
-              return `$${(value / 1000).toFixed(0)}K`; // Convert values to "K" format
+              return `$${(value / 1000).toFixed(0)}K`;
             }
             return `$${value}`;
           },
@@ -55,24 +54,19 @@ const BalanceChart = () => {
     },
     plugins: {
       legend: {
-        labels: {
-          font: {
-            family: "Roboto", // Apply Roboto font to legend labels
-            size: 14,
-          },
-        },
+        display: false,
       },
       tooltip: {
         bodyFont: {
-          family: "Roboto", // Apply Roboto font to tooltip body
+          family: "Roboto",
           size: 14,
         },
         titleFont: {
-          family: "Roboto", // Apply Roboto font to tooltip title
+          family: "Roboto",
           size: 14,
         },
         callbacks: {
-          label: (context) => `Balance: $${context.raw}`, // Custom tooltip format
+          label: (context) => `Balance: $${context.raw}`,
         },
       },
     },
@@ -102,7 +96,7 @@ const BalanceChart = () => {
           </div>
         </div>
       </div>
-      <div className="h-60">
+      <div className="h-80">
         <Line data={chartData} options={options} />
       </div>
     </div>
