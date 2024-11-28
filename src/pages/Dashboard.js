@@ -8,19 +8,6 @@ import BalanceChart from "../components/BalanceChart";
 import OrderHistory from "../components/OrderHistory";
 
 function Dashboard() {
-  const notificationsData = [
-    {
-      time: "12 days ago",
-      type: "RulesSoftBreach",
-      message: "Closed trade not placed with a stop-loss",
-    },
-    {
-      time: "8 days ago",
-      type: "RulesSoftBreach",
-      message: "Days since a trade was placed, closed...",
-    },
-  ];
-
   return (
     <div className="flex h-screen bg-gray-100 ">
       {/* Sidebar */}
@@ -123,11 +110,10 @@ function Dashboard() {
             </div>
 
             <div className="md:w-2/5">
-              <Notifications data={notificationsData} />
+              <Notifications />
             </div>
           </div>
 
-          {/* Order History Table */}
           <OrderHistory />
         </div>
       </div>

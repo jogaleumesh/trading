@@ -36,7 +36,7 @@ const OrderHistory = () => {
         </tbody>
       </table>
 
-      <Pagination totalItems={120} />
+      {/* <Pagination totalItems={120} /> */}
     </div>
   );
 };

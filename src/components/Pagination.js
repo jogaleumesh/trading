@@ -1,37 +1,33 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Pagination = ({ totalItems }) => {
-  const [itemsPerPage, setItemsPerPage] = useState(10); // Default items per page
-  const [currentPage, setCurrentPage] = useState(1);
+const Pagination = ({
+  totalItems,
+  itemsPerPage,
+  currentPage,
+  onPageChange,
+  onItemsPerPageChange,
+}) => {
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
 
-  const totalPages = Math.ceil(totalItems / itemsPerPage); // Calculate total pages
-
-  // Handler to change items per page
-  const handleItemsPerPageChange = (e) => {
-    setItemsPerPage(Number(e.target.value));
-    setCurrentPage(1); // Reset to first page
-  };
-
-  // Handler to change the current page
-  const handlePageChange = (page) => {
-    if (page > 0 && page <= totalPages) {
-      setCurrentPage(page);
-    }
-  };
-
-  // Calculate visible page numbers
   const getPageNumbers = () => {
     const pages = [];
-    let startPage = Math.max(currentPage - 1, 1); // Ensure the first page is at least 1
+    const totalPagesToShow = 4; // Number of visible pages
+    const totalPages = Math.ceil(totalItems / itemsPerPage); // Ensure this is defined
 
-    // Adjust start page if at the beginning or end
-    if (currentPage === totalPages) startPage = Math.max(totalPages - 3, 1);
-    else if (currentPage > totalPages - 2) startPage = totalPages - 3;
+    let startPage = Math.max(currentPage - Math.floor(totalPagesToShow / 2), 1);
+    let endPage = startPage + totalPagesToShow - 1;
 
-    // Add pages to the array (up to 4 pages)
-    for (let i = startPage; i < startPage + 4 && i <= totalPages; i++) {
+    // Adjust if endPage exceeds the total number of pages
+    if (endPage > totalPages) {
+      endPage = totalPages;
+      startPage = Math.max(totalPages - totalPagesToShow + 1, 1);
+    }
+
+    // Populate pages array
+    for (let i = startPage; i <= endPage; i++) {
       pages.push(i);
     }
+
     return pages;
   };
 
@@ -39,13 +35,13 @@ const Pagination = ({ totalItems }) => {
     <div className="flex justify-between items-center mt-4">
       {/* Items per page selector */}
       <div className="flex items-center">
-        <span className="text-gray-700 mr-2">Showing:</span>
+        <span className="text-gray-700 mr-2">Items per page:</span>
         <select
           value={itemsPerPage}
-          onChange={handleItemsPerPageChange}
-          className="border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          onChange={(e) => onItemsPerPageChange(Number(e.target.value))}
+          className="px-2 py-1 focus:outline-none"
         >
-          {[10, 20, 32, 50].map((num) => (
+          {[10, 20, 30, 50].map((num) => (
             <option key={num} value={num}>
               {num}
             </option>
@@ -57,7 +53,7 @@ const Pagination = ({ totalItems }) => {
       <div className="flex items-center space-x-2">
         {/* Previous Button */}
         <button
-          onClick={() => handlePageChange(currentPage - 1)}
+          onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
           className={`px-3 py-1 rounded-md ${
             currentPage === 1
@@ -72,7 +68,7 @@ const Pagination = ({ totalItems }) => {
         {getPageNumbers().map((page) => (
           <button
             key={page}
-            onClick={() => handlePageChange(page)}
+            onClick={() => onPageChange(page)}
             className={`px-3 py-1 rounded-md ${
               page === currentPage
                 ? "bg-blue-500 text-white"
@@ -85,7 +81,7 @@ const Pagination = ({ totalItems }) => {
 
         {/* Next Button */}
         <button
-          onClick={() => handlePageChange(currentPage + 1)}
+          onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
           className={`px-3 py-1 rounded-md ${
             currentPage === totalPages
