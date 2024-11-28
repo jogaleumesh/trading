@@ -33,20 +33,15 @@ function Dashboard() {
 
         {/* Content Area */}
         <div className="bg-gray-100">
-          <div className="flex flex-col md:flex-row  m-6 gap-4  ">
+          <div className="flex flex-col md:flex-row m-6 gap-4">
             <div className="md:w-3/5">
               <BalanceChart />
             </div>
 
             <div className="md:w-2/5  flex flex-col gap-4">
-              {/* Top Cards */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Card
-                  icon={{
-                    emoji: "📈",
-                    bgColor: "bg-blue-100",
-                    textColor: "text-blue-600",
-                  }}
+                  icon="profit-target.png"
                   title="Profit Target"
                   subTitle="Of $12,00.90"
                   value="$8,908.99"
@@ -58,11 +53,7 @@ function Dashboard() {
                 />
 
                 <Card
-                  icon={{
-                    emoji: "📉",
-                    bgColor: "bg-red-100",
-                    textColor: "text-red-600",
-                  }}
+                  icon="daily-loss-limit.png"
                   title="Daily Loss Limit"
                   subTitle="Of $12,00.90"
                   value="$12,908.99"
@@ -93,25 +84,41 @@ function Dashboard() {
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row  m-6  gap-4">
+          <div className="flex flex-col md:flex-row m-6 gap-4">
             <div className="md:w-3/5 ">
               <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <Card2
                   title="Average Win"
                   value="$642.00"
-                  icon="📈"
+                  icon="average-win.png"
                   footer={<span className="text-green-500">↑ 7%</span>}
                 />
                 <Card2
                   title="Average Loss"
                   value="$0.00"
-                  icon="📉"
+                  icon="average-loss.png"
                   footer={<span className="text-red-500">0%</span>}
                 />
-                <Card2 title="Profit Factor" value="6.4" icon="💹" />
-                <Card2 title="Best Trade" value="$8,908.99" icon="🏆" />
-                <Card2 title="Win Ratio" value="-$4,800.90" icon="🥇" />
-                <Card2 title="Risk Reward" value="$3,490.00" icon="⚖️" />
+                <Card2
+                  title="Profit Factor"
+                  value="6.4"
+                  icon="profit-factor.png"
+                />
+                <Card2
+                  title="Best Trade"
+                  value="$8,908.99"
+                  icon="best-trade.png"
+                />
+                <Card2
+                  title="Win Ratio"
+                  value="-$4,800.90"
+                  icon="win-ratio.png"
+                />
+                <Card2
+                  title="Risk Reward"
+                  value="$3,490.00"
+                  icon="risk-reward.png"
+                />
               </div>
             </div>
 

@@ -3,80 +3,76 @@ import {
   Chart as ChartJS,
   LineElement,
   PointElement,
-  LinearScale,
-  Title,
   Tooltip,
-  Legend,
+  LinearScale,
   CategoryScale,
+  Filler,
 } from "chart.js";
+
+import { chartData } from "../data/chartData";
 
 // Register Chart.js components
 ChartJS.register(
   LineElement,
   PointElement,
-  LinearScale,
-  Title,
   Tooltip,
-  Legend,
-  CategoryScale
+  LinearScale,
+  CategoryScale,
+  Filler
 );
 
 const BalanceChart = () => {
-  const data = {
-    labels: [0, 1, 2, 3, 4],
-    datasets: [
-      {
-        label: "Balance",
-        data: [105000, 102000, 95000, 98000, 100000],
-        borderColor: "#3B82F6",
-        backgroundColor: "rgba(59, 130, 246, 0.2)",
-        fill: true,
-        pointRadius: 5,
-        pointBackgroundColor: "#3B82F6",
-      },
-      {
-        label: "Equity",
-        data: [98000, 100000, 97000, 99000, 101000],
-        borderColor: "#F97316",
-        backgroundColor: "rgba(249, 115, 22, 0.2)",
-        fill: false,
-        pointRadius: 5,
-        pointBackgroundColor: "#F97316",
-      },
-    ],
-  };
-
   const options = {
     responsive: true,
     maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: false, // Hides legend
+    scales: {
+      x: {
+        grid: { display: true },
+        ticks: {
+          font: {
+            family: "Roboto", // Apply Roboto font to X-axis labels
+            size: 14, // Adjust font size if needed
+          },
+        },
       },
-      tooltip: {
-        backgroundColor: "#1F2937", // Dark tooltip background
-        titleColor: "#fff",
-        bodyColor: "#fff",
-        padding: 10,
+      y: {
+        min: 90000,
+        max: 115000,
+        grid: { display: true },
+        ticks: {
+          font: {
+            family: "Roboto", // Apply Roboto font to Y-axis labels
+            size: 14,
+          },
+          callback: (value) => {
+            if (value >= 1000) {
+              return `$${(value / 1000).toFixed(0)}K`; // Convert values to "K" format
+            }
+            return `$${value}`;
+          },
+        },
       },
     },
-    scales: {
-      y: {
-        beginAtZero: false,
-        ticks: {
-          callback: (value) => `$${(value / 1000).toFixed(1)}k`,
-          color: "#6B7280", // Gray color
-        },
-        grid: {
-          color: "#E5E7EB",
+    plugins: {
+      legend: {
+        labels: {
+          font: {
+            family: "Roboto", // Apply Roboto font to legend labels
+            size: 14,
+          },
         },
       },
-      x: {
-        grid: {
-          display: false,
+      tooltip: {
+        bodyFont: {
+          family: "Roboto", // Apply Roboto font to tooltip body
+          size: 14,
         },
-        ticks: {
-          color: "#6B7280",
+        titleFont: {
+          family: "Roboto", // Apply Roboto font to tooltip title
+          size: 14,
+        },
+        callbacks: {
+          label: (context) => `Balance: $${context.raw}`, // Custom tooltip format
         },
       },
     },
@@ -87,21 +83,27 @@ const BalanceChart = () => {
       <div className="flex justify-between items-center mb-4">
         <div>
           <h4 className="text-slate-950 text-xl font-medium">Total Balance</h4>
-          <p className="text-green-500 font-semibold">Profit: +0.8%</p>
+          <p className="text-blue-600 font-semibold">Profit: +0.8%</p>
         </div>
         <div className="flex space-x-6">
-          <div className="text-center">
-            <p className="text-gray-500 text-sm">Balance</p>
-            <p className="text-gray-900 font-semibold">$120,567.90</p>
+          <div className="flex items-center space-x-3">
+            <img src="assets/chart.png" alt="payout" className="h-8" />
+            <div>
+              <p className="text-gray-900 font-semibold">$120,567.90</p>
+              <p className="text-gray-500 text-sm">Balance</p>
+            </div>
           </div>
-          <div className="text-center">
-            <p className="text-gray-500 text-sm">Equity</p>
-            <p className="text-gray-900 font-semibold">$240,952.00</p>
+          <div className="flex items-center space-x-3">
+            <img src="assets/chart.png" alt="payout" className="h-8" />
+            <div>
+              <p className="text-gray-900 font-semibold">$240,952.00</p>
+              <p className="text-gray-500 text-sm">Equity</p>
+            </div>
           </div>
         </div>
       </div>
       <div className="h-60">
-        <Line data={data} options={options} />
+        <Line data={chartData} options={options} />
       </div>
     </div>
   );
