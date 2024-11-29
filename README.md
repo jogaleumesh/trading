@@ -56,7 +56,7 @@ An interactive trading platform built with React.js, Redux, and Tailwind CSS. Th
 
 ## Live Demo
 
-[Click here to view the live demo](https://your-live-demo-link.com)
+[Click here to view the live demo](https://trading-rouge.vercel.app)
 
 ---
 
